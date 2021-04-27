@@ -1,6 +1,9 @@
 # scraping jobs.ch
-library(tidyverse)
+# library(tidyverse)
 library(rvest)
+library(readr)
+library(stringr)
+library(tibble)
 library(writexl)
 
 # function to retrieve info on number of jobs
@@ -50,6 +53,6 @@ strat_bank_zh <- get_job_number("https://www.jobs.ch/de/stellenangebote/?industr
 df <- tibble(date = Sys.Date(), tot, chde, bank, strat, strat_de, zh, bank_zh, strat_zh, strat_bank_zh)
 
 # write to xlsx
-writexl::write_xlsx(obs, "ecb_eurchf.xlsx")
+writexl::write_xlsx(df, "job_numbers.xlsx")
 
 
