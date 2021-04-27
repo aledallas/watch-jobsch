@@ -5,8 +5,6 @@ name: jobs.ch watcher
 on:
   schedule:
     - cron: '0 18 * * *'
-  push:
-    branches: main
 
 jobs: 
   autoscrape:
