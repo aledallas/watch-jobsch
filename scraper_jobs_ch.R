@@ -4,6 +4,8 @@ library(rvest)
 library(readr)
 library(stringr)
 library(tibble)
+library(readxl)
+library(dplyr)
 library(writexl)
 
 # function to retrieve info on number of jobs
@@ -52,7 +54,13 @@ strat_bank_zh <- get_job_number("https://www.jobs.ch/de/stellenangebote/?industr
 # put things together
 df <- tibble(date = Sys.Date(), tot, chde, bank, strat, strat_de, zh, bank_zh, strat_zh, strat_bank_zh)
 
-# write to xlsx
-writexl::write_xlsx(df, "job_numbers.xlsx")
+# read the last file
+xls_input <- readxl::read_xlsx("job_numbers.xlsx")
 
+# add new data
+xls_update <- xls_input %>% 
+    bind_rows(df)
+
+# save by overwriting
+writexl::write_xlsx(xls_update, "job_numbers.xlsx")
 
