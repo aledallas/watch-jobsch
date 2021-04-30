@@ -52,7 +52,7 @@ strat_bank_zh <- get_job_number("https://www.jobs.ch/de/stellenangebote/?industr
 # Consolidate and save ----------------------------------------------------
 
 # put things together
-df <- tibble(date = Sys.Time(), tot, chde, bank, strat, strat_de, zh, bank_zh, strat_zh, strat_bank_zh)
+df <- tibble(date = Sys.time(), tot, chde, bank, strat, strat_de, zh, bank_zh, strat_zh, strat_bank_zh)
 
 # read the last file
 xls_input <- readxl::read_xlsx("job_numbers.xlsx")
